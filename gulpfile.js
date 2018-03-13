@@ -1,23 +1,23 @@
 'use strict';
 
-const gulp = require('gulp');
-const concat = require('gulp-concat');
-const rename = require('gulp-rename');
-const browserSync = require('browser-sync').create();
-const reload = browserSync.reload;
-const path = require('path');
-const url = require('gulp-css-url-adjuster');
-const autoprefixer = require('autoprefixer-core');
-const postcss = require('gulp-postcss');
-const del = require('del');
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+var path = require('path');
+var url = require('gulp-css-url-adjuster');
+var autoprefixer = require('autoprefixer-core');
+var postcss = require('gulp-postcss');
+var del = require('del');
 
-const params = {
+var params = {
     out: 'docs',
     htmlSrc: './bundles/index/index.html',
     levels: ['blocks'] // Уровни переопределения
 };
 
-const getFileNames = require('html2bl').getFileNames(params);
+var getFileNames = require('html2bl').getFileNames(params);
 
 gulp.task('default', ['build', 'server']);
 
@@ -38,7 +38,7 @@ gulp.task('server', () => {
     gulp.watch('*.html', ['html']);
 
     gulp.watch(params.levels.map((level) => {
-        const cssGlob = level + '/**/*.css';
+        var cssGlob = level + '/**/*.css';
         return cssGlob;
     }), ['css']);
 });
@@ -71,8 +71,8 @@ gulp.task('fonts', () => {
 
 gulp.task('images', () => {
 
-    const levels = params.levels.map((level) => {
-        const imgGlob = level + '/**/*.{png,jpg,svg}';
+    var levels = params.levels.map((level) => {
+        var imgGlob = level + '/**/*.{png,jpg,svg}';
 
         return imgGlob;
     });
