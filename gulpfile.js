@@ -6,7 +6,6 @@ var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var path = require('path');
-var url = require('gulp-css-url-adjuster');
 var autoprefixer = require('autoprefixer-core');
 var postcss = require('gulp-postcss');
 var del = require('del');
@@ -16,8 +15,6 @@ var params = {
     htmlSrc: './bundles/index/index.html',
     levels: ['blocks'] // Уровни переопределения
 };
-
-var getFileNames = require('html2bl').getFileNames(params);
 
 gulp.task('default', ['build', 'server']);
 
