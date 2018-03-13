@@ -18,57 +18,58 @@ var params = {
 
 gulp.task('default', ['build', 'server']);
 
-gulp.task('clean', () => {
+gulp.task('clean', function () {
     return del(params.out);
 });
 
-gulp.task('selectJS', () => {
+gulp.task('selectJS', function () {
     gulp.src('./scripts/*.js')
         .pipe(gulp.dest(path.join(params.out, 'scripts')));
 });
 
-gulp.task('server', () => {
+gulp.task('server', function () {
     browserSync.init({
         server: params.out
     });
 
     gulp.watch('*.html', ['html']);
 
-    gulp.watch(params.levels.map((level) => {
+    gulp.watch(params.levels.map(function (level) {
         var cssGlob = level + '/**/*.css';
         return cssGlob;
     }), ['css']);
 });
 
-gulp.task('build', ['clean'], () => {
+gulp.task('build', ['clean'], function () {
     gulp.start(['selectJS', 'html', 'css', 'images', 'fonts']);
 });
 
-gulp.task('html', () => {
+gulp.task('html', function () {
     gulp.src(params.htmlSrc)
         .pipe(rename('index.html'))
         .pipe(gulp.dest(params.out))
         .pipe(reload({stream: true}));
 });
 
-gulp.task('css', () => {
-    gulp.src(params.levels.map((dir) => dir + '/**/*.css'))
-    .pipe(concat('style.css'))
-    .pipe(postcss([autoprefixer({
+gulp.task('css', function () {
+    gulp.src(params.levels.map(function (dir) {
+        return dir + '/**/*.css';
+    }))
+        .pipe(concat('style.css'))
+        .pipe(postcss([autoprefixer({
             browsers: ['last 4 versions']
         })]))
         .pipe(gulp.dest(params.out))
         .pipe(reload({stream: true}));
 });
 
-gulp.task('fonts', () => {
+gulp.task('fonts', function () {
     gulp.src('./fonts/*')
         .pipe(gulp.dest(path.join(params.out, 'fonts')));
 });
 
-gulp.task('images', () => {
-
-    var levels = params.levels.map((level) => {
+gulp.task('images', function () {
+    var levels = params.levels.map(function (level) {
         var imgGlob = level + '/**/*.{png,jpg,svg}';
 
         return imgGlob;
