@@ -1,0 +1,15 @@
+{
+  "name": "yandex-zen",
+  "version": "1.0.0",
+  "description": "Yandex zen adaptive design for shri-2018",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "belodpav",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-loris": "^9.1.0"
+  }
+}
