@@ -1,4 +1,8 @@
 module.exports = {
   extends: 'loris/es5',
-  root: true
+  root: true,
+  env: {
+    browser: true,
+    node: true
+  }
 };
